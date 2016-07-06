@@ -2,10 +2,10 @@ import Ember from 'ember';
 import layout from '../templates/components/ember-columnar-menu';
 import { keyDown, EKMixin } from 'ember-keyboard';
 import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
-import { configurable } from 'affinity-engine';
 
 const {
   Component,
+  computed,
   get,
   getProperties,
   isPresent
@@ -29,6 +29,7 @@ export default Component.extend(...mixins, {
     suppressScrollX: true
   },
 
+  choices: [],
   columns: 1,
   downKeys: ['ArrowDown'],
   leftKeys: ['ArrowLeft'],

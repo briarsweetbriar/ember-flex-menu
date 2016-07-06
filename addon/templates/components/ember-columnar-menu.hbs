@@ -3,7 +3,7 @@
 {{/if}}
 
 {{#each columnizedChoices as |column|}}
-  <div class="ember-columnar-menu-column">
+  <div class="ember-columnar-menu-column" data-test={{hook "ember_columnar_menu_column"}}>
     {{#each column as |choice|}}
       {{component "ember-columnar-menu-option"
         choice=choice

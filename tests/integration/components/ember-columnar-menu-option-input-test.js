@@ -1,24 +1,41 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { hook, initialize as initializeHook } from 'ember-hook';
 
-moduleForComponent('ember-columnar-menu-option-input', 'Integration | Component | ember columnar menu option input', {
-  integration: true
+const {
+  setProperties
+} = Ember;
+
+moduleForComponent('ember-columnar-menu-option-input', 'Integration | Component | Affinity Engine Stage direction menu option input', {
+  integration: true,
+
+  beforeEach() {
+    initializeHook();
+  }
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it auto focuses itself', function(assert) {
+  assert.expect(1);
 
   this.render(hbs`{{ember-columnar-menu-option-input}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$(hook('ember_columnar_menu_option_input')).get(0), document.activeElement, 'it is focused');
+});
 
-  // Template block usage:
-  this.render(hbs`
-    {{#ember-columnar-menu-option-input}}
-      template block text
-    {{/ember-columnar-menu-option-input}}
-  `);
+test('it triggers `toggleInput` on `focusOut`', function(assert) {
+  assert.expect(1);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  setProperties(this, {
+    toggleInput() {
+      assert.ok(true, 'toggleInput was called');
+    },
+    choose() {
+      assert.ok(false, 'choose was called');
+    }
+  });
+
+  this.render(hbs`{{ember-columnar-menu-option-input toggleInput=(action toggleInput) choose=(action choose)}}`);
+
+  this.$(hook('ember_columnar_menu_option_input')).blur();
 });
