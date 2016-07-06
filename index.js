@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-columnar-menu'
+  name: 'ember-columnar-menu',
+
+  included: function(app) {
+    this._super.included(app);
+  }
 };

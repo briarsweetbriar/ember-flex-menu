@@ -1,6 +1,6 @@
 {
   "name": "ember-columnar-menu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A columnar menu component with built-in support for keyboard navigation and input toggles",
   "directories": {
     "doc": "doc",
