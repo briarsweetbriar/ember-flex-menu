@@ -1,1 +1,9 @@
 @import "ember-columnar-menu/ember-columnar-menu";
+
+.ember-columnar-menu-option-type {
+  width: 100%;
+
+  &:focus {
+    border-color: pink;
+  }
+}

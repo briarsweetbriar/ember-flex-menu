@@ -1,7 +1,7 @@
 .ember-columnar-menu {
   position: relative;
 
-  .ember-columnar-menu-column {
+  .ember-columnar-menu-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -9,5 +9,6 @@
 
   .ember-columnar-menu-option {
     flex-grow: 1;
+    text-align: center;
   }
 }

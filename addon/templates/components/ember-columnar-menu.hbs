@@ -2,15 +2,19 @@
   <div class="ember-columnar-menu-header" data-test={{hook "ember_columnar_menu_header"}}>{{header}}</div>
 {{/if}}
 
-{{#each columnizedChoices as |column|}}
-  <div class="ember-columnar-menu-column" data-test={{hook "ember_columnar_menu_column"}}>
-    {{#each column as |choice|}}
+{{#each columnizedChoices as |column rowIndex|}}
+  <div class="ember-columnar-menu-row" data-test={{hook "ember_columnar_menu_row"}}>
+    {{#each column as |choice columnIndex|}}
       {{component "ember-columnar-menu-option"
         choice=choice
         choose=choose
+        columnIndex=columnIndex
+        iconFamily=iconFamily
         keyboardActivated=keyboardActivated
         keyboardPriority=keyboardPriority
-        iconFamily=iconFamily
+        rowIndex=rowIndex
+        childGainedFocus=(action "childGainedFocus" rowIndex columnIndex)
+        childLostFocus=(action "childLostFocus" rowIndex columnIndex)
       }}
     {{/each}}
   </div>

@@ -8,8 +8,11 @@ const {
   computed,
   get,
   getProperties,
-  isPresent
+  isPresent,
+  setProperties
 } = Ember;
+
+const { reads } = computed;
 
 const { run: { next } } = Ember;
 
@@ -35,6 +38,9 @@ export default Component.extend(...mixins, {
   leftKeys: ['ArrowLeft'],
   rightKeys: ['ArrowRight'],
   upKeys: ['ArrowUp'],
+  loop: true,
+  loopX: reads('loop'),
+  loopY: reads('loop'),
 
   init(...args) {
     this._super(...args);
@@ -73,29 +79,65 @@ export default Component.extend(...mixins, {
     }
   }),
 
+  rows: computed('choices.[]', 'columns', {
+    get() {
+      return Math.ceil(get(this, 'choices.length') / get(this, 'columns'));
+    }
+  }),
+
+  lastRowLength: computed('choices.[]', 'columns', {
+    get() {
+      return Math.ceil(get(this, 'choices.length') % get(this, 'columns'));
+    }
+  }),
+
   _focusDown(event) {
-    this._keyboardEvent(event, (index, length) => {
-      return index + 1 === length ? 0 : index + 1;
-    });
+    const { currentColumnIndex, currentRowIndex, lastRowLength, loopY, rows } = getProperties(this, 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopY', 'rows');
+    const newRowIndex = currentRowIndex + 1 > rows - 1 && loopY ? 0 : currentRowIndex + 1;
+    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength -1 ? lastRowLength - 1 : currentColumnIndex;
+
+    this._focusTo(event, newColumnIndex, newRowIndex);
+  },
+
+  _focusLeft(event) {
+    const { columns, currentColumnIndex, currentRowIndex, lastRowLength, loopX, rows } = getProperties(this, 'columns', 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopX', 'rows');
+    const lastColumnIndex = currentRowIndex === rows - 1 ? lastRowLength - 1 : columns - 1;
+    const newColumnIndex = currentColumnIndex === 0 && loopX ? lastColumnIndex : currentColumnIndex - 1;
+
+    this._focusTo(event, newColumnIndex, currentRowIndex);
+  },
+
+  _focusRight(event) {
+    const { columns, currentColumnIndex, currentRowIndex, lastRowLength, loopX, rows } = getProperties(this, 'columns', 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopX', 'rows');
+    const lastColumnIndex = currentRowIndex === rows - 1 ? lastRowLength - 1 : columns - 1;
+    const newColumnIndex = currentColumnIndex === lastColumnIndex && loopX ? 0 : currentColumnIndex + 1;
+
+    this._focusTo(event, newColumnIndex, currentRowIndex);
   },
 
   _focusUp(event) {
-    this._keyboardEvent(event, (index, length) => {
-      return index - 1 < 0 ? length - 1 : index - 1;
-    });
+    const { currentColumnIndex, currentRowIndex, lastRowLength, loopY, rows } = getProperties(this, 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopY', 'rows');
+    const newRowIndex = currentRowIndex - 1 < 0 && loopY ? rows - 1 : currentRowIndex - 1;
+    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength -1 ? lastRowLength - 1 : currentColumnIndex;
+
+    this._focusTo(event, newColumnIndex, newRowIndex);
   },
 
-  _keyboardEvent(event, indexCallback) {
+  _focusTo(event, columnIndex, rowIndex) {
     if (isPresent(event)) {
       event.preventDefault();
     }
 
-    const choices = this.$('button');
-    const current = document.activeElement;
-    const index = choices.index(current);
-    const length = choices.length;
-    const newIndex = indexCallback(index, length);
+    this.$(`[data-column-index="${columnIndex || 0}"][data-row-index="${rowIndex || 0}"]`).focus();
+  },
 
-    choices.eq(newIndex).focus();
+  actions: {
+    childGainedFocus(currentRowIndex, currentColumnIndex) {
+      setProperties(this, { currentRowIndex, currentColumnIndex });
+    },
+
+    childLostFocus() {
+      setProperties(this, { currentRowIndex: undefined, currentColumnIndex: undefined });
+    }
   }
 });

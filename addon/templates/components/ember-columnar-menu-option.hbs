@@ -1,15 +1,23 @@
 {{#if isInput}}
   {{ember-columnar-menu-option-input
-    choice=choice
-    value=choice.input
     cancelKeys=cancelKeys
+    choice=choice
+    childGainedFocus=childGainedFocus
+    childLostFocus=childLostFocus
+    columnIndex=columnIndex
+    rowIndex=rowIndex
+    value=choice.input
     choose=(action "choose" choice)
     toggleInput=(action "toggleInput")
   }}
 {{else}}
   {{ember-columnar-menu-option-button
+    childGainedFocus=childGainedFocus
+    childLostFocus=childLostFocus
     choice=choice
+    columnIndex=columnIndex
     iconFamily=iconFamily
+    rowIndex=rowIndex
     choose=(action "choose" choice)
     toggleInput=(action "toggleInput")
   }}

@@ -7,7 +7,8 @@ const {
 } = Ember;
 
 export default TextField.extend({
-  classNames: ['ember-columnar-menu-option-input'],
+  attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
+  classNames: ['ember-columnar-menu-option-input', 'ember-columnar-menu-option-type'],
   hook: 'ember_columnar_menu_option_input',
 
   didInsertElement(...args) {
@@ -16,9 +17,14 @@ export default TextField.extend({
     this.$().focus();
   },
 
+  focusIn(...args) {
+    this._super(...args);
+    this.attrs.childGainedFocus();
+  },
+
   focusOut(...args) {
     this._super(...args);
-
+    this.attrs.childLostFocus();
     this.attrs.toggleInput();
   },
 

@@ -50,6 +50,6 @@ test('it renders the list of choices in columns', function(assert) {
   }}`);
 
   assert.equal(this.$(hook('ember_columnar_menu_option')).length, 3, 'the correct number of choices was rendered');
-  assert.equal(this.$(hook('ember_columnar_menu_column')).length, 2, 'the correct number of columns was rendered');
-  assert.equal(this.$(hook('ember_columnar_menu_column')).first().find(hook('ember_columnar_menu_option')).length, 2, 'the correct number of choices were rendered per column');
+  assert.equal(this.$(hook('ember_columnar_menu_row')).length, 2, 'the correct number of columns was rendered');
+  assert.equal(this.$(hook('ember_columnar_menu_row')).first().find(hook('ember_columnar_menu_option')).length, 2, 'the correct number of choices were rendered per column');
 });
