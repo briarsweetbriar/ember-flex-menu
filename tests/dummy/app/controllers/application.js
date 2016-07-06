@@ -22,4 +22,4 @@ export default Controller.extend({
       console.log(choice);
     }
   }
-})
+});

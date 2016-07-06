@@ -16,17 +16,27 @@ moduleForComponent('ember-columnar-menu-option-input', 'Integration | Component 
 });
 
 test('it auto focuses itself', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
-  this.render(hbs`{{ember-columnar-menu-option-input}}`);
+  setProperties(this, {
+    childGainedFocus() {
+      assert.ok(true, 'childGainedFocus was called');
+    }
+  });
+
+  this.render(hbs`{{ember-columnar-menu-option-input childGainedFocus=(action childGainedFocus)}}`);
 
   assert.equal(this.$(hook('ember_columnar_menu_option_input')).get(0), document.activeElement, 'it is focused');
 });
 
 test('it triggers `toggleInput` on `focusOut`', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
   setProperties(this, {
+    childGainedFocus() {},
+    childLostFocus() {
+      assert.ok(true, 'childLostFocus was called');
+    },
     toggleInput() {
       assert.ok(true, 'toggleInput was called');
     },
@@ -35,7 +45,7 @@ test('it triggers `toggleInput` on `focusOut`', function(assert) {
     }
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-input toggleInput=(action toggleInput) choose=(action choose)}}`);
+  this.render(hbs`{{ember-columnar-menu-option-input childGainedFocus=(action childGainedFocus) childLostFocus=(action childLostFocus) toggleInput=(action toggleInput) choose=(action choose)}}`);
 
   this.$(hook('ember_columnar_menu_option_input')).blur();
 });

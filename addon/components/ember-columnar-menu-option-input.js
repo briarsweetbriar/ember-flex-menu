@@ -3,8 +3,8 @@ import { keyDown } from 'ember-keyboard';
 
 const {
   TextField,
-  on,
-  getProperties
+  getProperties,
+  isPresent
 } = Ember;
 
 export default TextField.extend({
@@ -17,8 +17,8 @@ export default TextField.extend({
 
     const { acceptKeys, cancelKeys } = getProperties(this, 'acceptKeys', 'cancelKeys');
 
-    acceptKeys.forEach((key) => this.on(keyDown(key), (event) => this._accept(event)));
-    cancelKeys.forEach((key) => this.on(keyDown(key), (event) => this._cancel(event)));
+    if (isPresent(acceptKeys)) { acceptKeys.forEach((key) => this.on(keyDown(key), (event) => this._accept(event))); }
+    if (isPresent(cancelKeys)) { cancelKeys.forEach((key) => this.on(keyDown(key), (event) => this._cancel(event))); }
   },
 
   didInsertElement(...args) {
@@ -28,14 +28,14 @@ export default TextField.extend({
   },
 
   focusIn(...args) {
-    this._super(...args);
     this.attrs.childGainedFocus();
+    this._super(...args);
   },
 
   focusOut(...args) {
-    this._super(...args);
     this.attrs.childLostFocus();
     this.attrs.toggleInput();
+    this._super(...args);
   },
 
   _accept() {

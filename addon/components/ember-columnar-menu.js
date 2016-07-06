@@ -86,7 +86,7 @@ export default Component.extend(...mixins, {
   }),
 
   _ensureChoiceIsObject(choice) {
-    return typeOf(choice) === 'object' ? choice : { text: choice, value: choice }
+    return typeOf(choice) === 'object' ? choice : { text: choice, value: choice };
   },
 
   rows: computed('choices.[]', 'columns', {

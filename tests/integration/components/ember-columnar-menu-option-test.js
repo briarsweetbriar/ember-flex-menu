@@ -1,6 +1,9 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { hook, initialize as initializeHook } from 'ember-hook';
+
+const { set } = Ember;
 
 moduleForComponent('ember-columnar-menu-option', 'Integration | Component | ember columnar menu option', {
   integration: true,
@@ -13,7 +16,9 @@ moduleForComponent('ember-columnar-menu-option', 'Integration | Component | embe
 test('it renders an input when both `choice.inputable` and `inputOpen` are true', function(assert) {
   assert.expect(2);
 
-  this.render(hbs`{{ember-columnar-menu-option choice=(hash inputable=true) inputOpen=true}}`);
+  set(this, 'childGainedFocus', () => {});
+
+  this.render(hbs`{{ember-columnar-menu-option choice=(hash inputable=true) inputOpen=true childGainedFocus=(action childGainedFocus) }}`);
 
   assert.ok(this.$(hook('ember_columnar_menu_option_button')).length === 0, 'it does not render a button');
   assert.ok(this.$(hook('ember_columnar_menu_option_input')).length === 1, 'it renders an input');

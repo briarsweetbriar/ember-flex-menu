@@ -67,7 +67,7 @@ To display multiple columns:
 By default:
 
 * acceptKeys: ['Enter']
-* escapeKeys: ['Escape']
+* cancelKeys: ['Escape']
 * moveDown: ['ArrowDown']
 * moveLeft: ['ArrowLeft']
 * moveRight: ['ArrowRight']
