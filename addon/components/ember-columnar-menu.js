@@ -9,7 +9,9 @@ const {
   get,
   getProperties,
   isPresent,
-  setProperties
+  set,
+  setProperties,
+  typeOf
 } = Ember;
 
 const { reads } = computed;
@@ -70,16 +72,22 @@ export default Component.extend(...mixins, {
       const { choices, columns } = getProperties(this, 'choices', 'columns');
 
       return choices.reduce((columnizedChoices, choice, index) => {
+        const choiceObject = this._ensureChoiceIsObject(choice);
+
         if (index%columns === 0) {
-          columnizedChoices.pushObject(Ember.A([choice]));
+          columnizedChoices.pushObject(Ember.A([choiceObject]));
         } else {
-          get(columnizedChoices, 'lastObject').pushObject(choice);
+          get(columnizedChoices, 'lastObject').pushObject(choiceObject);
         }
 
         return columnizedChoices;
       }, Ember.A());
     }
   }),
+
+  _ensureChoiceIsObject(choice) {
+    return typeOf(choice) === 'object' ? choice : { text: choice, value: choice }
+  },
 
   rows: computed('choices.[]', 'columns', {
     get() {
@@ -134,6 +142,11 @@ export default Component.extend(...mixins, {
   },
 
   actions: {
+    choose(choice) {
+      set(choice, 'value', get(choice, 'value') || get(choice, 'text'));
+      this.attrs.onChoice(choice);
+    },
+
     childGainedFocus(currentRowIndex, currentColumnIndex) {
       setProperties(this, { currentRowIndex, currentColumnIndex });
     },

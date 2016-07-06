@@ -4,8 +4,7 @@ import layout from '../templates/components/ember-columnar-menu-option-button';
 const {
   Component,
   computed,
-  get,
-  typeOf
+  get
 } = Ember;
 
 export default Component.extend({
@@ -49,13 +48,5 @@ export default Component.extend({
     } else {
       this.attrs.choose();
     }
-  },
-
-  text: computed('choice.text', 'choice', {
-    get() {
-      const choice = get(this, 'choice');
-
-      return typeOf(choice) === 'object' ? get(choice, 'text') : choice;
-    }
-  })
+  }
 });

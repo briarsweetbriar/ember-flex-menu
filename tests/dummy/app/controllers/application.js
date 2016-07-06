@@ -8,10 +8,18 @@ export default Controller.extend({
   choices: [
     'Collard Greens',
     'Mustard Greens',
-    'Japanese Yams',
-    'Apricots', {
+    'Onions', {
+      text: 'Japanese Yams',
+      value: 'yams'
+    }, {
       text: 'Other',
       inputable: true
     }
-  ]
+  ],
+
+  actions: {
+    logChoice(choice) {
+      console.log(choice);
+    }
+  }
 })
