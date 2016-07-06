@@ -1,0 +1,13 @@
+.ember-columnar-menu {
+  position: relative;
+
+  .ember-columnar-menu-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .ember-columnar-menu-option {
+    flex-grow: 1;
+  }
+}

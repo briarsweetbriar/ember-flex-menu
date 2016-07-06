@@ -12,6 +12,7 @@ const { run: { next } } = Ember;
 export default Component.extend({
   layout: layout,
 
+  classNames: ['ember-columnar-menu-option'],
   classNameBindings: ['choice.classNames'],
   hook: 'ember_columnar_menu_option',
 
