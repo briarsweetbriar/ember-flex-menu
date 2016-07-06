@@ -1,0 +1,1 @@
+export { default } from 'ember-columnar-menu/components/ember-columnar-menu-option-button';

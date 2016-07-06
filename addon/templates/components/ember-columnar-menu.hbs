@@ -1,0 +1,17 @@
+{{#if header}}
+  <div class="ember-columnar-menu-header" data-test={{hook "ember_columnar_menu_header"}}>{{header}}</div>
+{{/if}}
+
+{{#each columnizedChoices as |column|}}
+  <div class="ember-columnar-menu-column">
+    {{#each column as |choice|}}
+      {{component "ember-columnar-menu-option"
+        choice=choice
+        choose=choose
+        keyboardActivated=keyboardActivated
+        keyboardPriority=keyboardPriority
+        iconFamily=iconFamily
+      }}
+    {{/each}}
+  </div>
+{{/each}}

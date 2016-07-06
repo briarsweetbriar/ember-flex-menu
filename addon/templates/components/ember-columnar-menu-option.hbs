@@ -1,0 +1,16 @@
+{{#if isInput}}
+  {{ember-columnar-menu-option-input
+    choice=choice
+    value=choice.input
+    cancelKeys=cancelKeys
+    choose=(action "choose" choice)
+    toggleInput=(action "toggleInput")
+  }}
+{{else}}
+  {{ember-columnar-menu-option-button
+    choice=choice
+    iconFamily=iconFamily
+    choose=(action "choose" choice)
+    toggleInput=(action "toggleInput")
+  }}
+{{/if}}
