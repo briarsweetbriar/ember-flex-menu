@@ -1,10 +1,12 @@
 {{#if isInput}}
   {{ember-columnar-menu-option-input
+    acceptKeys=acceptKeys
     cancelKeys=cancelKeys
     choice=choice
     childGainedFocus=childGainedFocus
     childLostFocus=childLostFocus
     columnIndex=columnIndex
+    escapeKeys=escapeKeys
     rowIndex=rowIndex
     value=choice.input
     choose=(action "choose" choice)

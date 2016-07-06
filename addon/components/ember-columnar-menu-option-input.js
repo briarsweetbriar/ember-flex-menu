@@ -3,13 +3,23 @@ import { keyDown } from 'ember-keyboard';
 
 const {
   TextField,
-  on
+  on,
+  getProperties
 } = Ember;
 
 export default TextField.extend({
   attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
   classNames: ['ember-columnar-menu-option-input', 'ember-columnar-menu-option-type'],
   hook: 'ember_columnar_menu_option_input',
+
+  init(...args) {
+    this._super(...args);
+
+    const { acceptKeys, cancelKeys } = getProperties(this, 'acceptKeys', 'cancelKeys');
+
+    acceptKeys.forEach((key) => this.on(keyDown(key), (event) => this._accept(event)));
+    cancelKeys.forEach((key) => this.on(keyDown(key), (event) => this._cancel(event)));
+  },
 
   didInsertElement(...args) {
     this._super(...args);
@@ -28,7 +38,11 @@ export default TextField.extend({
     this.attrs.toggleInput();
   },
 
-  complete: on(keyDown('Enter'), function() {
+  _accept() {
     this.attrs.choose();
-  })
+  },
+
+  _cancel() {
+    this.attrs.toggleInput();
+  }
 });

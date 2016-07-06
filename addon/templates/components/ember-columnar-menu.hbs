@@ -6,6 +6,8 @@
   <div class="ember-columnar-menu-row" data-test={{hook "ember_columnar_menu_row"}}>
     {{#each column as |choice columnIndex|}}
       {{component "ember-columnar-menu-option"
+        acceptKeys=acceptKeys
+        cancelKeys=cancelKeys
         choice=choice
         choose=choose
         columnIndex=columnIndex

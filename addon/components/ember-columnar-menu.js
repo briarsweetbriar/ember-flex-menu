@@ -34,6 +34,8 @@ export default Component.extend(...mixins, {
 
   choices: [],
   columns: 1,
+  acceptKeys: ['Enter'],
+  cancelKeys: ['Escape'],
   downKeys: ['ArrowDown'],
   leftKeys: ['ArrowLeft'],
   rightKeys: ['ArrowRight'],
