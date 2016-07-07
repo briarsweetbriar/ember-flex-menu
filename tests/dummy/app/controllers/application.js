@@ -8,7 +8,10 @@ export default Controller.extend({
   choices: [
     'Collard Greens',
     'Mustard Greens',
-    'Onions', {
+    'Kale',
+    'Garlic',
+    'Onions',
+    'Butternut Squash', {
       text: 'Japanese Yams',
       value: 'yams'
     }, {

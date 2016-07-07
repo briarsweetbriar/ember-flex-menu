@@ -104,7 +104,7 @@ export default Component.extend(...mixins, {
   _focusDown(event) {
     const { currentColumnIndex, currentRowIndex, lastRowLength, loopY, rows } = getProperties(this, 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopY', 'rows');
     const newRowIndex = currentRowIndex + 1 > rows - 1 && loopY ? 0 : currentRowIndex + 1;
-    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength -1 ? lastRowLength - 1 : currentColumnIndex;
+    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength - 1 && lastRowLength > 1 ? lastRowLength - 1 : currentColumnIndex;
 
     this._focusTo(event, newColumnIndex, newRowIndex);
   },
@@ -128,7 +128,7 @@ export default Component.extend(...mixins, {
   _focusUp(event) {
     const { currentColumnIndex, currentRowIndex, lastRowLength, loopY, rows } = getProperties(this, 'currentColumnIndex', 'currentRowIndex', 'lastRowLength', 'loopY', 'rows');
     const newRowIndex = currentRowIndex - 1 < 0 && loopY ? rows - 1 : currentRowIndex - 1;
-    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength -1 ? lastRowLength - 1 : currentColumnIndex;
+    const newColumnIndex = newRowIndex === rows - 1 && currentColumnIndex > lastRowLength - 1 && lastRowLength > 1 ? lastRowLength - 1 : currentColumnIndex;
 
     this._focusTo(event, newColumnIndex, newRowIndex);
   },
