@@ -6,5 +6,7 @@ module.exports = {
 
   included: function(app) {
     this._super.included(app);
+
+    this.eachAddonInvoke('safeIncluded', [app]);
   }
 };
