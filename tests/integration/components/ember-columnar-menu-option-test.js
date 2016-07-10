@@ -13,6 +13,31 @@ moduleForComponent('ember-columnar-menu-option', 'Integration | Component | embe
   }
 });
 
+test('it renders the choice class', function(assert) {
+  assert.expect(2);
+
+  this.set('choice', {
+    classNames: ['foo', 'bar']
+  });
+
+  this.render(hbs`{{ember-columnar-menu-option choice=choice}}`);
+
+  assert.ok(this.$(hook('ember_columnar_menu_option')).hasClass('foo'), 'renders first class');
+  assert.ok(this.$(hook('ember_columnar_menu_option')).hasClass('bar'), 'renders second class');
+});
+
+test('it renders the choice grow class', function(assert) {
+  assert.expect(1);
+
+  this.set('choice', {
+    grow: 3
+  });
+
+  this.render(hbs`{{ember-columnar-menu-option choice=choice}}`);
+
+  assert.ok(this.$(hook('ember_columnar_menu_option')).hasClass('ember-columnar-menu-option-grow-3'), 'renders grow class');
+});
+
 test('it renders an input when both `choice.inputable` and `inputOpen` are true', function(assert) {
   assert.expect(2);
 

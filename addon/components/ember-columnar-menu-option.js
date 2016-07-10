@@ -3,20 +3,42 @@ import layout from '../templates/components/ember-columnar-menu-option';
 
 const {
   Component,
+  computed,
+  get,
   isPresent
 } = Ember;
 
-const { computed: { and } } = Ember;
+const { and } = computed;
 const { run: { next } } = Ember;
 
 export default Component.extend({
   layout: layout,
 
   classNames: ['ember-columnar-menu-option'],
-  classNameBindings: ['choice.classNames'],
+  classNameBindings: ['joinedClassNames', 'growClass'],
   hook: 'ember_columnar_menu_option',
 
   isInput: and('choice.inputable', 'inputOpen'),
+
+  joinedClassNames: computed('choice.classNames', {
+    get() {
+      const classNames = get(this, 'choice.classNames');
+
+      if (isPresent(classNames)) {
+        return classNames.join(' ');
+      }
+    }
+  }),
+
+  growClass: computed('choice.grow', {
+    get() {
+      const grow = get(this, 'choice.grow');
+
+      if (isPresent(grow)) {
+        return `ember-columnar-menu-option-grow-${grow}`;
+      }
+    }
+  }),
 
   actions: {
     choose(choice) {

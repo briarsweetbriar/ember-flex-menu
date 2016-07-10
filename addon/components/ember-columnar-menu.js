@@ -70,18 +70,23 @@ export default Component.extend(...mixins, {
   columnizedChoices: computed('choices.[]', 'columns', {
     get() {
       const { choices, columns } = getProperties(this, 'choices', 'columns');
+      let column = 0;
 
-      return choices.reduce((columnizedChoices, choice, index) => {
+      return choices.reduce((columnizedChoices, choice) => {
         const choiceObject = this._ensureChoiceIsObject(choice);
+        const choiceSize = get(choiceObject, 'grow') || 1;
 
-        if (index%columns === 0) {
+        column += choiceSize;
+
+        if (column > columns) {
           columnizedChoices.pushObject(Ember.A([choiceObject]));
+          column = choiceSize;
         } else {
           get(columnizedChoices, 'lastObject').pushObject(choiceObject);
         }
 
         return columnizedChoices;
-      }, Ember.A());
+      }, Ember.A([Ember.A()]));
     }
   }),
 
