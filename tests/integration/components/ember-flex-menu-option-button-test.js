@@ -9,7 +9,7 @@ const {
   setProperties
 } = Ember;
 
-moduleForComponent('ember-columnar-menu-option-button', 'Integration | Component | Affinity Engine Stage direction menu option button', {
+moduleForComponent('ember-flex-menu-option-button', 'Integration | Component | Affinity Engine Stage direction menu option button', {
   integration: true,
 
   beforeEach() {
@@ -24,9 +24,9 @@ test('it renders the button attributes correctly', function(assert) {
     class: 'foo'
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-button choice=choice}}`);
+  this.render(hbs`{{ember-flex-menu-option-button choice=choice}}`);
 
-  const $button = this.$(hook('ember_columnar_menu_option_button'));
+  const $button = this.$(hook('ember_flex_menu_option_button'));
 
   assert.ok($button.is('button'), 'it is a button');
   assert.ok($button.hasClass('foo'), 'has the correct class');
@@ -41,9 +41,9 @@ test('it renders the button text correctly', function(assert) {
     text
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-button choice=choice}}`);
+  this.render(hbs`{{ember-flex-menu-option-button choice=choice}}`);
 
-  assert.equal(this.$(hook('ember_columnar_menu_option_button_text')).text().trim(), text, 'text rendered correctly');
+  assert.equal(this.$(hook('ember_flex_menu_option_button_text')).text().trim(), text, 'text rendered correctly');
 });
 
 test('it renders an icon if one is provided', function(assert) {
@@ -54,9 +54,9 @@ test('it renders an icon if one is provided', function(assert) {
     iconFamily: 'icon-component'
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-button choice=choice}}`);
+  this.render(hbs`{{ember-flex-menu-option-button choice=choice}}`);
 
-  assert.equal(this.$(hook('ember_columnar_menu_option_button_icon')).text().trim(), 'foo', 'icon rendered correctly');
+  assert.equal(this.$(hook('ember_flex_menu_option_button_icon')).text().trim(), 'foo', 'icon rendered correctly');
 });
 
 test('when clicked, it triggers `choose` by default', function(assert) {
@@ -71,9 +71,9 @@ test('when clicked, it triggers `choose` by default', function(assert) {
     }
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
+  this.render(hbs`{{ember-flex-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
 
-  this.$(hook('ember_columnar_menu_option_button')).click();
+  this.$(hook('ember_flex_menu_option_button')).click();
 });
 
 test('when clicked, it triggers `toggleInput` if the choice is `inputable`', function(assert) {
@@ -91,7 +91,7 @@ test('when clicked, it triggers `toggleInput` if the choice is `inputable`', fun
     }
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
+  this.render(hbs`{{ember-flex-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
 
-  this.$(hook('ember_columnar_menu_option_button')).click();
+  this.$(hook('ember_flex_menu_option_button')).click();
 });

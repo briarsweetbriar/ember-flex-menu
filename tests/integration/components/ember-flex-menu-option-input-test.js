@@ -7,7 +7,7 @@ const {
   setProperties
 } = Ember;
 
-moduleForComponent('ember-columnar-menu-option-input', 'Integration | Component | Affinity Engine Stage direction menu option input', {
+moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | Affinity Engine Stage direction menu option input', {
   integration: true,
 
   beforeEach() {
@@ -24,9 +24,9 @@ test('it auto focuses itself', function(assert) {
     }
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-input childGainedFocus=(action childGainedFocus)}}`);
+  this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus)}}`);
 
-  assert.equal(this.$(hook('ember_columnar_menu_option_input')).get(0), document.activeElement, 'it is focused');
+  assert.equal(this.$(hook('ember_flex_menu_option_input')).get(0), document.activeElement, 'it is focused');
 });
 
 test('it triggers `toggleInput` on `focusOut`', function(assert) {
@@ -45,7 +45,7 @@ test('it triggers `toggleInput` on `focusOut`', function(assert) {
     }
   });
 
-  this.render(hbs`{{ember-columnar-menu-option-input childGainedFocus=(action childGainedFocus) childLostFocus=(action childLostFocus) toggleInput=(action toggleInput) choose=(action choose)}}`);
+  this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus) childLostFocus=(action childLostFocus) toggleInput=(action toggleInput) choose=(action choose)}}`);
 
-  this.$(hook('ember_columnar_menu_option_input')).blur();
+  this.$(hook('ember_flex_menu_option_input')).blur();
 });

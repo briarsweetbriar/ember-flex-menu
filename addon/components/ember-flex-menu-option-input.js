@@ -9,8 +9,8 @@ const {
 
 export default TextField.extend({
   attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
-  classNames: ['ember-columnar-menu-option-input', 'ember-columnar-menu-option-type'],
-  hook: 'ember_columnar_menu_option_input',
+  classNames: ['ember-flex-menu-option-input', 'ember-flex-menu-option-type'],
+  hook: 'ember_flex_menu_option_input',
 
   init(...args) {
     this._super(...args);

@@ -1,13 +1,13 @@
-.ember-columnar-menu {
+.ember-flex-menu {
   position: relative;
 
-  .ember-columnar-menu-row {
+  .ember-flex-menu-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
 
-  .ember-columnar-menu-option {
+  .ember-flex-menu-option {
     flex-grow: 1;
     text-align: center;
   }

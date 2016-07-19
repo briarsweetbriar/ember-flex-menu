@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-columnar-menu',
+  name: 'ember-flex-menu',
 
   included: function(app) {
     this._super.included(app);

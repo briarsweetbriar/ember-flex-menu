@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/ember-columnar-menu-option';
+import layout from '../templates/components/ember-flex-menu-option';
 
 const {
   Component,
@@ -14,9 +14,9 @@ const { run: { next } } = Ember;
 export default Component.extend({
   layout: layout,
 
-  classNames: ['ember-columnar-menu-option'],
+  classNames: ['ember-flex-menu-option'],
   classNameBindings: ['joinedClassNames', 'growClass'],
-  hook: 'ember_columnar_menu_option',
+  hook: 'ember_flex_menu_option',
 
   isInput: and('choice.inputable', 'inputOpen'),
 
@@ -35,7 +35,7 @@ export default Component.extend({
       const grow = get(this, 'choice.grow');
 
       if (isPresent(grow)) {
-        return `ember-columnar-menu-option-grow-${grow}`;
+        return `ember-flex-menu-option-grow-${grow}`;
       }
     }
   }),

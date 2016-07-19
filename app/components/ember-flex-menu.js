@@ -1,0 +1,1 @@
+export { default } from 'ember-flex-menu/components/ember-flex-menu';

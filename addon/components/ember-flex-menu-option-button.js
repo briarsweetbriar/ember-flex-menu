@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/ember-columnar-menu-option-button';
+import layout from '../templates/components/ember-flex-menu-option-button';
 
 const {
   Component,
@@ -12,8 +12,8 @@ export default Component.extend({
 
   attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
   classNameBindings: ['choice.class'],
-  classNames: ['ember-columnar-menu-option-button', 'ember-columnar-menu-option-type'],
-  hook: 'ember_columnar_menu_option_button',
+  classNames: ['ember-flex-menu-option-button', 'ember-flex-menu-option-type'],
+  hook: 'ember_flex_menu_option_button',
   tagName: 'button',
 
   iconFamily: computed('choice.iconFamily', {

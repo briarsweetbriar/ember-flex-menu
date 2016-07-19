@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/ember-columnar-menu';
+import layout from '../templates/components/ember-flex-menu';
 import { keyDown, EKMixin } from 'ember-keyboard';
 import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
 
@@ -26,9 +26,9 @@ const mixins = [
 export default Component.extend(...mixins, {
   layout,
 
-  classNames: ['ember-columnar-menu'],
+  classNames: ['ember-flex-menu'],
   classNameBindings: ['customClassNames'],
-  hook: 'ember_columnar_menu',
+  hook: 'ember_flex_menu',
 
   perfectScrollbarOptions: {
     suppressScrollX: true

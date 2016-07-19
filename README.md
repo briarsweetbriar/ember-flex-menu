@@ -1,13 +1,13 @@
-[![npm version](https://badge.fury.io/js/ember-columnar-menu.svg)](https://badge.fury.io/js/ember-columnar-menu)
-[![Build Status](https://travis-ci.org/null-null-null/ember-columnar-menu.svg?branch=master)](https://travis-ci.org/null-null-null/ember-columnar-menu)
+[![npm version](https://badge.fury.io/js/ember-flex-menu.svg)](https://badge.fury.io/js/ember-flex-menu)
+[![Build Status](https://travis-ci.org/null-null-null/ember-flex-menu.svg?branch=master)](https://travis-ci.org/null-null-null/ember-flex-menu)
 
-# ember-columnar-menu
+# ember-flex-menu
 
-`ember-columnar-menu` is a flexible menu component that has built-in support for keyboard navigation, multiple column layouts, and buttons that can toggle into inputs.
+`ember-flex-menu` is a flexible menu component that has built-in support for keyboard navigation, multiple column layouts, and buttons that can toggle into inputs.
 
 ## Installation
 
-`ember install ember-columnar-menu`
+`ember install ember-flex-menu`
 
 ## Usage
 
@@ -24,12 +24,12 @@ export default Ember.Controller.extend({
 ```
 
 ```hbs
-{{ember-columnar-menu choices=choices onChoose=(action "myAction")}}
+{{ember-flex-menu choices=choices onChoose=(action "myAction")}}
 ```
 
 ```scss
 // styles/app.scss
-@import "ember-columnar-menu/ember-columnar-menu";
+@import "ember-flex-menu/ember-flex-menu";
 ```
 
 This results in a single column menu with buttons 'foo', 'bar', and 'baz'. If 'bar' is clicked, then 'myAction' will receive:
@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
 To display multiple columns:
 
 ```hbs
-{{ember-columnar-menu choices=choices columns=5}}
+{{ember-flex-menu choices=choices columns=5}}
 ```
 
 ### Key Bindings
@@ -80,7 +80,7 @@ export default Ember.Component.extend({
 ```
 
 ```hbs
-{{ember-columnar-menu moveDownKeys=customMoveDown}}
+{{ember-flex-menu moveDownKeys=customMoveDown}}
 ```
 
 Consult the [`ember-keyboard`](https://github.com/null-null-null/ember-keyboard) docs for more info on key names.

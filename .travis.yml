@@ -30,4 +30,4 @@ deploy:
     secure: kpejC4+b72c6r8LO2dFhPjKZwgYyQFPnlZxie5ozuB/PCHXsYhihyzKMTcXmizj/eomb73IwXUCUerG9zLRwiRlQjFIG/GvWBg1TYGm4+V0Kt72TUfV/RLWUFbUD1e8j5SOfmps0L84qTeLrfmwN8YSEGLkrCQfHRe46+ozeRUFGOGWkqMeOnZou8rn80YlLYt4dgp7aB4WQKtKwMhi6TZcxG60lbscYazcoYR/lhJtC4Yw9LcTuGXJk4W6UvKSIFBvywCt3+chxs2U8K8dVxl2Ypk7kHfxsHX2/vurrCvhzC0shwTMRcuxLeG7JgPSydTCBb6ZdBj7UM1NlAbafapjvWZF6LqhntCV7hbGyZmVul9HHS0Aw/01Wkwj0tmLhuOtJS6uE5+MK49C6RfBvQDPQnBsyHsZMShGcsuJDQEFalROMdTvRBiONzakQYRxenhSd0/bzlrrEmLFnJ4Pjvhw+mQ/M1PXdow41iWjm/UxPlDWusO54Ju8qbzpn+Xmlcg6iL8HoQU7PVn2Av2T3+OZ0PgpC2o0j+UbYTm5V0Np9+h8eWznzaRAW9t7lvd8z4LZL+5m6QoJ53WMRTuxwDK4lWHCLEBP2XPerKeOEl/jme9/wnhqCYdPAI9lQKtHhcQmXEWedtDndrKhpN3mxlXQEn2J2tVU47X6qNOlGBT8=
   on:
     tags: true
-    repo: null-null-null/ember-columnar-menu
+    repo: null-null-null/ember-flex-menu
