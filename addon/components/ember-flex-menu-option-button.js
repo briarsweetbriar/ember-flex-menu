@@ -7,6 +7,8 @@ const {
   get
 } = Ember;
 
+const { String: { htmlSafe } } = Ember;
+
 export default Component.extend({
   layout,
 
@@ -19,6 +21,15 @@ export default Component.extend({
   iconFamily: computed('choice.iconFamily', {
     get() {
       return get(this, 'choice.iconFamily') || get(this, 'iconFamily');
+    }
+  }),
+
+  text: computed('choice.text', 'choice.htmlSafe', 'htmlSafe', {
+    get() {
+      const isHtmlSafe = get(this, 'choice.htmlSafe') || get(this, 'htmlSafe');
+      const text = get(this, 'choice.text');
+
+      return isHtmlSafe ? htmlSafe(text) : text;
     }
   }),
 
