@@ -7,6 +7,8 @@ const {
   isPresent
 } = Ember;
 
+const { run: { next } } = Ember;
+
 export default TextField.extend({
   attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
   classNames: ['ember-flex-menu-option-input', 'ember-flex-menu-option-type'],
@@ -24,7 +26,7 @@ export default TextField.extend({
   didInsertElement(...args) {
     this._super(...args);
 
-    this.$().focus();
+    next(() => this.$().focus());
   },
 
   focusIn(...args) {

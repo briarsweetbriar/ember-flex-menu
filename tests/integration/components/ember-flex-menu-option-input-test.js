@@ -7,6 +7,8 @@ const {
   setProperties
 } = Ember;
 
+const { run: { later } } = Ember;
+
 moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | Affinity Engine Stage direction menu option input', {
   integration: true,
 
@@ -18,6 +20,8 @@ moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | Af
 test('it auto focuses itself', function(assert) {
   assert.expect(2);
 
+  const done = assert.async();
+
   setProperties(this, {
     childGainedFocus() {
       assert.ok(true, 'childGainedFocus was called');
@@ -26,7 +30,11 @@ test('it auto focuses itself', function(assert) {
 
   this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus)}}`);
 
-  assert.equal(this.$(hook('ember_flex_menu_option_input')).get(0), document.activeElement, 'it is focused');
+  later(() => {
+    assert.equal(this.$(hook('ember_flex_menu_option_input')).get(0), document.activeElement, 'it is focused');
+
+    done();
+  }, 50);
 });
 
 test('it triggers `toggleInput` on `focusOut`', function(assert) {
