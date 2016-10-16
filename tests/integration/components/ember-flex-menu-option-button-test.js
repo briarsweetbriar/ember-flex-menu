@@ -9,7 +9,7 @@ const {
   setProperties
 } = Ember;
 
-moduleForComponent('ember-flex-menu-option-button', 'Integration | Component | Affinity Engine Stage direction menu option button', {
+moduleForComponent('ember-flex-menu-option-button', 'Integration | Component | ember flex menu option button', {
   integration: true,
 
   beforeEach() {

@@ -4,7 +4,8 @@ import { keyDown } from 'ember-keyboard';
 const {
   TextField,
   getProperties,
-  isPresent
+  isPresent,
+  typeOf
 } = Ember;
 
 const { run: { next } } = Ember;
@@ -30,21 +31,27 @@ export default TextField.extend({
   },
 
   focusIn(...args) {
-    this.attrs.childGainedFocus();
     this._super(...args);
+
+    this._tryFunction(this.attrs.childGainedFocus);
   },
 
   focusOut(...args) {
-    this.attrs.childLostFocus();
-    this.attrs.toggleInput();
     this._super(...args);
+
+    this._tryFunction(this.attrs.childLostFocus);
+    this._tryFunction(this.attrs.toggleInput);
   },
 
   _accept() {
-    this.attrs.choose();
+    this._tryFunction(this.attrs.choose);
   },
 
   _cancel() {
-    this.attrs.toggleInput();
+    this._tryFunction(this.attrs.toggleInput);
+  },
+
+  _tryFunction(fn) {
+    if (typeOf(fn) === 'function') { fn(); }
   }
 });

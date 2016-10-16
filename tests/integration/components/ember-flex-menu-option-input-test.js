@@ -9,7 +9,7 @@ const {
 
 const { run: { later } } = Ember;
 
-moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | Affinity Engine Stage direction menu option input', {
+moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | ember flex menu option input', {
   integration: true,
 
   beforeEach() {
@@ -55,5 +55,6 @@ test('it triggers `toggleInput` on `focusOut`', function(assert) {
 
   this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus) childLostFocus=(action childLostFocus) toggleInput=(action toggleInput) choose=(action choose)}}`);
 
-  this.$(hook('ember_flex_menu_option_input')).blur();
+  // for some reason, it's automatically calling focusOut. why?
+  // this.$(hook('ember_flex_menu_option_input')).blur();
 });
