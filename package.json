@@ -1,6 +1,6 @@
 {
   "name": "ember-flex-menu",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A flexible Ember.js menu component",
   "directories": {
     "doc": "doc",
@@ -46,7 +46,7 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
     "ember-cli-htmlbars": "^1.0.3",
-    "ember-keyboard": "2.0.1",
+    "ember-keyboard": "^2.1.4",
     "ember-perfect-scrollbar": "^0.0.3"
   },
   "ember-addon": {
