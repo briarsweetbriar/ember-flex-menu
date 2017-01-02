@@ -13,6 +13,21 @@
     choose=(action "choose" choice)
     toggleInput=(action "toggleInput")
   }}
+{{else if choice.slider}}
+  {{range-slider
+    animate=choice.slider.animate
+    connect=choice.slider.connect
+    direction=choice.slider.direction
+    disabled=choice.slider.disabled
+    limit=choice.slider.limit
+    margin=choice.slider.margin
+    orientation=choice.slider.orientation
+    range=choice.slider.range
+    start=choice.slider.start
+    step=choice.slider.step
+    tooltips=choice.slider.tooltips
+    on-change=(action "sliderChange")
+  }}
 {{else}}
   {{ember-flex-menu-option-button
     childGainedFocus=childGainedFocus

@@ -8,6 +8,7 @@ const {
   computed,
   get,
   getProperties,
+  isBlank,
   isPresent,
   set,
   setProperties,
@@ -73,7 +74,7 @@ export default Component.extend(...mixins, {
       let column = 0;
 
       return choices.reduce((columnizedChoices, choice) => {
-        const choiceObject = this._ensureChoiceIsObject(choice);
+        const choiceObject = this._prepChoice(choice);
         const choiceSize = get(choiceObject, 'grow') || 1;
 
         column += choiceSize;
@@ -90,8 +91,22 @@ export default Component.extend(...mixins, {
     }
   }),
 
-  _ensureChoiceIsObject(choice) {
-    return typeOf(choice) === 'object' ? choice : { text: choice, value: choice };
+  _prepChoice(arg) {
+    const choice = typeOf(arg) === 'object' ? arg : { text: arg, value: arg };
+
+    if (get(choice, 'slider.start') && isBlank(get(choice, 'value'))) {
+      set(choice, 'value', get(choice, 'slider.start'));
+    }
+
+    if (isBlank(get(choice, 'value')) && !get(choice, 'inputable')) {
+      set(choice, 'value', get(choice, 'text'));
+    }
+
+    if (get(choice, 'alwaysSelected')) {
+      set(choice, 'selected', true);
+    }
+
+    return choice;
   },
 
   rows: computed('choices.[]', 'columns', {
@@ -148,7 +163,6 @@ export default Component.extend(...mixins, {
 
   actions: {
     choose(choice) {
-      set(choice, 'value', get(choice, 'value') || get(choice, 'text'));
       this.attrs.onChoice(choice);
     },
 
@@ -158,6 +172,12 @@ export default Component.extend(...mixins, {
 
     childLostFocus() {
       setProperties(this, { currentRowIndex: undefined, currentColumnIndex: undefined });
+    },
+
+    chooseMulti(choice) {
+      set(choice, 'selections', get(this, 'choices').filter((choice) => get(choice, 'selected')));
+
+      this.send('choose', choice);
     }
   }
 });

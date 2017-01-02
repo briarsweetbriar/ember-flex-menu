@@ -5,7 +5,8 @@ const {
   Component,
   computed,
   get,
-  isPresent
+  isPresent,
+  set
 } = Ember;
 
 const { and } = computed;
@@ -15,7 +16,7 @@ export default Component.extend({
   layout: layout,
 
   classNames: ['ember-flex-menu-option'],
-  classNameBindings: ['joinedClassNames', 'growClass'],
+  classNameBindings: ['joinedClassNames', 'growClass', 'choice.selected'],
   hook: 'ember_flex_menu_option',
 
   isInput: and('choice.inputable', 'inputOpen'),
@@ -42,7 +43,15 @@ export default Component.extend({
 
   actions: {
     choose(choice) {
-      this.attrs.choose(choice);
+      if (get(choice, 'multi')) {
+        if (!get(choice, 'alwaysSelected')) {
+          set(choice, 'selected', get(choice, 'selected') ? false : true);
+        }
+      } else if (get(choice, 'multiSubmit')) {
+        this.attrs.chooseMulti(choice);
+      } else {
+        this.attrs.choose(choice);
+      }
     },
 
     toggleInput() {
@@ -55,6 +64,10 @@ export default Component.extend({
           button.focus();
         }
       });
+    },
+
+    sliderChange(value) {
+      set(this, 'choice.value', value);
     }
   }
 });
