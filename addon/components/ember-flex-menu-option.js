@@ -68,6 +68,14 @@ export default Component.extend({
 
     sliderChange(value) {
       set(this, 'choice.value', value);
+    },
+
+    sliderUpdate(value) {
+      const choice = get(this, 'choice');
+
+      if (choice.slider.onUpdate) {
+        choice.slider.onUpdate(value);
+      }
     }
   }
 });

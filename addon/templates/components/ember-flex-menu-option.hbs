@@ -28,6 +28,7 @@
     step=choice.slider.step
     tooltips=choice.slider.tooltips
     on-change=(action "sliderChange")
+    on-update=(action "sliderUpdate")
   }}
 {{else}}
   {{ember-flex-menu-option-button

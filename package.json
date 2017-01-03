@@ -1,6 +1,6 @@
 {
   "name": "ember-flex-menu",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A flexible Ember.js menu component",
   "keywords": [
     "ember-addon"

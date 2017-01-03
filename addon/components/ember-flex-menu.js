@@ -94,11 +94,13 @@ export default Component.extend(...mixins, {
   _prepChoice(arg) {
     const choice = typeOf(arg) === 'object' ? arg : { text: arg, value: arg };
 
-    if (get(choice, 'slider.start') && isBlank(get(choice, 'value'))) {
-      set(choice, 'value', get(choice, 'slider.start'));
-    }
+    if (get(choice, 'slider')) {
+      if (isBlank(get(choice, 'value'))) {
+        set(choice, 'value', get(choice, 'slider.start'));
+      }
 
-    if (isBlank(get(choice, 'value')) && !get(choice, 'inputable')) {
+      set(choice, 'alwaysSelected', true);
+    } else if (isBlank(get(choice, 'value')) && !get(choice, 'inputable')) {
       set(choice, 'value', get(choice, 'text'));
     }
 

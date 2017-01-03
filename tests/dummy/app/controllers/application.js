@@ -35,10 +35,9 @@ export default Controller.extend({
         range: {
           min: 1,
           max: 100
-        }
-      },
-      multi: true,
-      alwaysSelected: true
+        },
+        onUpdate(value) { console.log(value); }
+      }
     }, {
       text: 'Multi Submit',
       multiSubmit: true
