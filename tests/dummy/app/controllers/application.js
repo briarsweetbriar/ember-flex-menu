@@ -36,7 +36,7 @@ export default Controller.extend({
           min: 1,
           max: 100
         },
-        onUpdate(value) { console.log(value); }
+        onUpdate(value) { console.log(value); } // eslint-disable-line
       }
     }, {
       text: 'Multi Submit',
@@ -46,7 +46,7 @@ export default Controller.extend({
 
   actions: {
     logChoice(choice) {
-      console.log(choice);
+      console.log(choice); // eslint-disable-line
     }
   }
 });

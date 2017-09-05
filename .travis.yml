@@ -1,22 +1,29 @@
 ---
 language: node_js
 node_js:
+  # we recommend testing addons with the same minimum supported node version as Ember CLI
+  # so that your addon works for all apps
   - "4"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
 
 cache:
   directories:
     - $HOME/.npm
-    - $HOME/.cache # includes bowers cache
 
 env:
-  # we recommend testing LTS's and latest stable release (bonus points to beta/canary)
-  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  # we recommend new addons test the current and previous LTS
+  # as well as latest stable release (bonus points to beta/canary)
   - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-lts-2.12
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
 
 matrix:
   fast_finish: true
@@ -25,25 +32,10 @@ matrix:
 
 before_install:
   - npm config set spin false
-  - npm install -g bower
-  - bower --version
-  - npm install phantomjs-prebuilt
-  - node_modules/phantomjs-prebuilt/bin/phantomjs --version
-
-install:
-  - npm install
-  - bower install
+  - npm install -g npm@4
+  - npm --version
 
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
-
-deploy:
-  provider: npm
-  email: null@affinitygamescollective.org
-  api_key:
-    secure: U8INd0PR4Ea7wgg2LQdiw2KE+RKjt9KbcqYQNQETyhvNRM9pu6A6swYCq4/a/m9mIrmQ+D4YnYtcvMVGVnwNPe43R0qGNKcmlYlIgYRL6AWzdb7KbJITed0WJ2MII/JHAuXZoFwJnASOS1I3qVlMJ1ZXr6APGbOgasobhnD0j+C488/3XtA0XRuv+MbUkSmT520DqeTFOQwp9gvlHzJIDuRJbJesOhIBKbESW01wSKXP9FTTgpj+Yfc4GbLMKfqrUXxoR3pofe46kBkRMcc6ZxvTPn7tCV0M8FYNtYJGhVS+dopzwGvInufDupwfEi239/9xsLvaeCDWknvktqH/qlb60YLd3a0SaXj43vkE1o9Fho2HiyC5wrq0Gyfg7+Q6svnKRtfi9+y7hEduvzzo2PZHVlfHaXf6/w4UR2gSVW8VqLeL087D0sm+kEqpUCvnAz+j7UokXl6iqJsGL5Xg1/FVLam886LSX+QXHwceiPCYkKG8nv3aoIBilHUi5wY0F+SHACaAYc2DjY0E9/jfDFg0djX9qA0ja/Cj52jxR1bAFq7SX0hYwNtihQGNmc2wlKvakekBTD6p5fhT10P0KRAGVTQqV9IW8mFXGdWpR8c4+7+bMVLZe39ahRrwMh4Jh/OJqEXu2o6SWRMhwwVd7+iyM0MunyTAQjwiJu0VLc0=
-  on:
-    tags: true
-    repo: null-null-null/ember-flex-menu
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
