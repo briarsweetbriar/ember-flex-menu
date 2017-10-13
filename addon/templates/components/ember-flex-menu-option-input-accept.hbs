@@ -1,0 +1,7 @@
+{{#if choice.acceptIcon}}
+  {{component choiceAcceptIconFamily icon=choice.acceptIcon}}
+{{else if choice.acceptText}}
+  {{choice.acceptText}}
+{{else}}
+  &check;
+{{/if}}

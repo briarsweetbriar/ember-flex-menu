@@ -12,7 +12,7 @@ const { run: { next } } = Ember;
 
 export default TextField.extend({
   attributeBindings: ['columnIndex:data-column-index', 'rowIndex:data-row-index'],
-  classNames: ['ember-flex-menu-option-input', 'ember-flex-menu-option-type'],
+  classNames: ['ember-flex-menu-option-input'],
   hook: 'ember_flex_menu_option_input',
 
   init(...args) {
@@ -33,14 +33,13 @@ export default TextField.extend({
   focusIn(...args) {
     this._super(...args);
 
-    this._tryFunction(this.attrs.childGainedFocus);
+    this._tryFunction(this.attrs.gainedFocus);
   },
 
   focusOut(...args) {
     this._super(...args);
 
-    this._tryFunction(this.attrs.childLostFocus);
-    this._tryFunction(this.attrs.toggleInput);
+    this._tryFunction(this.attrs.lostFocus);
   },
 
   _accept() {

@@ -58,7 +58,7 @@ export default Component.extend({
       this.toggleProperty('inputOpen');
 
       next(() => {
-        const button = this.$('button');
+        const button = this.$('.ember-flex-menu-option-button');
 
         if (isPresent(button)) {
           button.focus();

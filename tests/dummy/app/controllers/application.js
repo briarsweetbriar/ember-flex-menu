@@ -5,6 +5,8 @@ const {
 } = Ember;
 
 export default Controller.extend({
+  iconFamily: 'fa-icon',
+
   choices: [
     'Collard Greens',
     'Mustard Greens',
@@ -16,7 +18,8 @@ export default Controller.extend({
       value: 'yams'
     }, {
       text: 'Other',
-      inputable: true
+      inputable: true,
+      acceptIcon: 'camera'
     }, {
       text: 'Multi1',
       multi: true

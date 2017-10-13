@@ -18,7 +18,7 @@ export default Component.extend({
   hook: 'ember_flex_menu_option_button',
   tagName: 'button',
 
-  iconFamily: computed('choice.iconFamily', {
+  choiceIconFamily: computed('choice.iconFamily', 'iconFamily', {
     get() {
       return get(this, 'choice.iconFamily') || get(this, 'iconFamily');
     }

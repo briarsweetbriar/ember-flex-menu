@@ -18,17 +18,11 @@ moduleForComponent('ember-flex-menu-option-input', 'Integration | Component | em
 });
 
 test('it auto focuses itself', function(assert) {
-  assert.expect(2);
+  assert.expect(1);
 
   const done = assert.async();
 
-  setProperties(this, {
-    childGainedFocus() {
-      assert.ok(true, 'childGainedFocus was called');
-    }
-  });
-
-  this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus)}}`);
+  this.render(hbs`{{ember-flex-menu-option-input}}`);
 
   later(() => {
     assert.equal(this.$(hook('ember_flex_menu_option_input')).get(0), document.activeElement, 'it is focused');
@@ -42,19 +36,13 @@ test('it triggers `toggleInput` on `focusOut`', function(assert) {
   // assert.expect(2);
 
   setProperties(this, {
-    childGainedFocus() {},
-    childLostFocus() {
-      assert.ok(true, 'childLostFocus was called');
-    },
-    toggleInput() {
-      assert.ok(true, 'toggleInput was called');
-    },
-    choose() {
-      assert.ok(false, 'choose was called');
+    gainedFocus() {},
+    lostFocus() {
+      assert.ok(true, 'lostFocus was called');
     }
   });
 
-  this.render(hbs`{{ember-flex-menu-option-input childGainedFocus=(action childGainedFocus) childLostFocus=(action childLostFocus) toggleInput=(action toggleInput) choose=(action choose)}}`);
+  this.render(hbs`{{ember-flex-menu-option-input gainedFocus=(action gainedFocus) lostFocus=(action lostFocus)}}`);
 
   this.$(hook('ember_flex_menu_option_input')).blur();
 });
