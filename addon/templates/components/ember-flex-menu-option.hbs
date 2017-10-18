@@ -15,7 +15,7 @@
     toggleInput=(action "toggleInput")
   }}
 {{else if choice.slider}}
-  <div class="ember-flex-menu-option-slider-text">{{choice.text}}</div>
+  <div class="ember-flex-menu-option-slider-text">{{choice.text}}{{#if choice.slider.showValue}} | {{choice.value}}{{/if}}</div>
   {{range-slider
     animate=choice.slider.animate
     connect=choice.slider.connect

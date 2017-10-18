@@ -44,10 +44,11 @@ export default TextField.extend({
 
   _accept() {
     this._tryFunction(this.attrs.choose);
+    this._tryFunction(this.attrs.lostFocus);
   },
 
   _cancel() {
-    this._tryFunction(this.attrs.toggleInput);
+    this._tryFunction(this.attrs.lostFocus);
   },
 
   _tryFunction(fn) {

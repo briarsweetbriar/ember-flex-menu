@@ -34,12 +34,14 @@ export default Ember.Component.extend({
     this._super(...args);
 
     this._tryFunction(this.attrs.choose);
+    this._tryFunction(this.attrs.lostFocus);
   },
 
   touchEnd(...args) {
     this._super(...args);
 
     this._tryFunction(this.attrs.choose);
+    this._tryFunction(this.attrs.lostFocus);
   },
 
   _tryFunction(fn) {

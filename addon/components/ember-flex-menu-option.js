@@ -67,11 +67,13 @@ export default Component.extend({
     },
 
     sliderChange(value) {
-      set(this, 'choice.value', value);
+      set(this, 'choice.value', Math.floor(value));
     },
 
     sliderUpdate(value) {
       const choice = get(this, 'choice');
+
+      set(choice, 'value', Math.floor(value));
 
       if (choice.slider.onUpdate) {
         choice.slider.onUpdate(value);
