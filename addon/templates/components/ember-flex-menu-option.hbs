@@ -16,21 +16,23 @@
   }}
 {{else if choice.slider}}
   <div class="ember-flex-menu-option-slider-text">{{choice.text}}{{#if choice.slider.showValue}} | {{choice.value}}{{/if}}</div>
-  {{range-slider
-    animate=choice.slider.animate
-    connect=choice.slider.connect
-    direction=choice.slider.direction
-    disabled=choice.slider.disabled
-    limit=choice.slider.limit
-    margin=choice.slider.margin
-    orientation=choice.slider.orientation
-    range=choice.slider.range
-    start=choice.slider.start
-    step=choice.slider.step
-    tooltips=choice.slider.tooltips
-    on-change=(action "sliderChange")
-    on-update=(action "sliderUpdate")
-  }}
+  <div class="ember-flex-menu-option-slider">
+    {{range-slider
+      animate=choice.slider.animate
+      connect=choice.slider.connect
+      direction=choice.slider.direction
+      disabled=choice.slider.disabled
+      limit=choice.slider.limit
+      margin=choice.slider.margin
+      orientation=choice.slider.orientation
+      range=choice.slider.range
+      start=choice.slider.start
+      step=choice.slider.step
+      tooltips=choice.slider.tooltips
+      on-change=(action "sliderChange")
+      on-update=(action "sliderUpdate")
+    }}
+  </div>
 {{else}}
   {{ember-flex-menu-option-button
     childGainedFocus=childGainedFocus
