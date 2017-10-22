@@ -1,5 +1,5 @@
 [![npm version](https://badge.fury.io/js/ember-flex-menu.svg)](https://badge.fury.io/js/ember-flex-menu)
-[![Build Status](https://travis-ci.org/null-null-null/ember-flex-menu.svg?branch=master)](https://travis-ci.org/null-null-null/ember-flex-menu)
+[![Build Status](https://travis-ci.org/patience-tema-baron/ember-flex-menu.svg?branch=master)](https://travis-ci.org/patience-tema-baron/ember-flex-menu)
 
 # ember-flex-menu
 
@@ -83,4 +83,4 @@ export default Ember.Component.extend({
 {{ember-flex-menu moveDownKeys=customMoveDown}}
 ```
 
-Consult the [`ember-keyboard`](https://github.com/null-null-null/ember-keyboard) docs for more info on key names.
+Consult the [`ember-keyboard`](https://github.com/patience-tema-baron/ember-keyboard) docs for more info on key names.
