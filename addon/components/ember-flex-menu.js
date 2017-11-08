@@ -39,10 +39,10 @@ export default Component.extend(...mixins, {
   columns: 1,
   acceptKeys: ['Enter'],
   cancelKeys: ['Escape'],
-  downKeys: ['ArrowDown'],
-  leftKeys: ['ArrowLeft'],
-  rightKeys: ['ArrowRight'],
-  upKeys: ['ArrowUp'],
+  moveDownKeys: ['ArrowDown'],
+  moveLeftKeys: ['ArrowLeft'],
+  moveRightKeys: ['ArrowRight'],
+  moveUpKeys: ['ArrowUp'],
   loop: true,
   loopX: reads('loop'),
   loopY: reads('loop'),
@@ -50,12 +50,12 @@ export default Component.extend(...mixins, {
   init(...args) {
     this._super(...args);
 
-    const { downKeys, leftKeys, rightKeys, upKeys } = getProperties(this, 'downKeys', 'leftKeys', 'rightKeys', 'upKeys');
+    const { moveDownKeys, moveLeftKeys, moveRightKeys, moveUpKeys } = getProperties(this, 'moveDownKeys', 'moveLeftKeys', 'moveRightKeys', 'moveUpKeys');
 
-    downKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusDown(event)));
-    leftKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusLeft(event)));
-    rightKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusRight(event)));
-    upKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusUp(event)));
+    moveDownKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusDown(event)));
+    moveLeftKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusLeft(event)));
+    moveRightKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusRight(event)));
+    moveUpKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusUp(event)));
   },
 
   didInsertElement(...args) {
